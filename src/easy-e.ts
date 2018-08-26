@@ -30,6 +30,14 @@ export default class Erric {
     this.alerter = alerter
   }
 
+  public hacf() {
+    throw this
+  }
+
+  public throw() {
+    throw this
+  }
+
   public alert() {
     this.alerter(this.messageForHumans)
   }
