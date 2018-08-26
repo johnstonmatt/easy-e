@@ -7,7 +7,7 @@ built in hopes that I will better handle exceptions, it's [easy](https://johnsto
 ```javascript
 if(!isSluggable(blogpost.name)){
     validationError = new Erric();
-    validationError.setCode(`validation/blog/name/unsluggable/${this.props.modelKey}`);
+    validationError.setCode(`validation/blog/name/unsluggable`);
     validationError.setMessageForHumans('only letters, numbers, and spaces g');
     validationError.setMeta({ input: blogpost.name })
     validationError.alert(showMyErrorToast);
