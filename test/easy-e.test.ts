@@ -3,8 +3,7 @@ import Erric from '../src/easy-e'
 global.console = {
   warn: jest.fn(),
   log: jest.fn(),
-  error: jest.fn(),
-  err: jest.fn()
+  error: jest.fn()
 }
 
 describe('Erric', () => {
