@@ -50,13 +50,6 @@ describe('Erric', () => {
     })
   })
 
-  describe(`should set an alerter if it satisfies 'Alerter' interface`, () => {
-    it(`should throw if alerter does not satisfy interface`, () => {
-      const erric = new Erric('error/alerter/not-an-alerter')
-      expect(erric.setAlerter(mockInvalidAlerter)).toThrow()
-    })
-  })
-
   describe(`should throw`, () => {
     it(`should throw when 'throw' method is called`, () => {
       const erric = new Erric('tempurature/too-cold')
