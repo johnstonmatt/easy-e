@@ -1,7 +1,4 @@
 import Erric from '../src/easy-e'
-import { Alerter } from '../src/easy-e'
-const any = expect.any
-
 describe('Erric', () => {
   describe('should be chill with no args in the constructor', () => {
     it('should exist after constructing with no params', () => {
@@ -12,16 +9,6 @@ describe('Erric', () => {
     it(`should have a public method 'alert'`, () => {
       const defaultErric = new Erric()
       expect(defaultErric.alert).toBeInstanceOf(Function)
-    })
-
-    it(`should have an 'alerter' by default`, () => {
-      const defaultErric = new Erric()
-      expect(defaultErric.alerter).toBeDefined()
-    })
-
-    it(`should have an 'alerter' by default`, () => {
-      const defaultErric = new Erric()
-      expect(defaultErric.alerter).toBeInstanceOf(Function)
     })
 
     it(`should have a public property called 'code' by default`, () => {
@@ -60,6 +47,13 @@ describe('Erric', () => {
     it(`should throw when 'hacf' method is called`, () => {
       const erric = new Erric('tempurature/too-cold')
       expect(erric.hacf).toThrow()
+    })
+  })
+
+  describe(`should set an alerter if it satisfies 'Alerter' interface`, () => {
+    it(`should throw if alerter does not satisfy interface`, () => {
+      const erric = new Erric('error/alerter/not-an-alerter')
+      expect(erric.setAlerter(mockInvalidAlerter)).toThrow()
     })
   })
 
