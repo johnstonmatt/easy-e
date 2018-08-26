@@ -3,7 +3,8 @@ import Erric from '../src/easy-e'
 global.console = {
   warn: jest.fn(),
   log: jest.fn(),
-  error: jest.fn()
+  error: jest.fn(),
+  err: jest.fn()
 }
 
 describe('Erric', () => {
@@ -57,6 +58,14 @@ describe('Erric', () => {
       const telemetricData = `chromeTabCount > 500`
       error.setMetadata({ cause: telemetricData })
       expect(error.metadata).toEqual({ cause: telemetricData })
+    })
+  })
+
+  describe(`method aliases should call their methods`, () => {
+    const error = new Erric()
+    it(`should call og method`, () => {
+      error.error()
+      expect(global.console.error).toBeCalledWith(error)
     })
   })
 
