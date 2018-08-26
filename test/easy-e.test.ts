@@ -2,77 +2,87 @@ import Erric from '../src/easy-e'
 describe('Erric', () => {
   describe('should be chill with no args in the constructor', () => {
     it('should exist after constructing with no params', () => {
-      const defaultErric = new Erric()
-      expect(defaultErric).toBeDefined()
+      const defaultError = new Erric()
+      expect(defaultError).toBeDefined()
     })
 
     it(`should have a public method 'alert'`, () => {
-      const defaultErric = new Erric()
-      expect(defaultErric.alert).toBeInstanceOf(Function)
+      const defaultError = new Erric()
+      expect(defaultError.alert).toBeInstanceOf(Function)
     })
 
-    it(`should have a public property called 'code' by default`, () => {
-      const defaultErric = new Erric()
-      expect(defaultErric.code).toEqual(expect.stringContaining('code'))
+    it(`should have a public property called 'code' by default, that describes itself`, () => {
+      const defaultError = new Erric()
+      expect(defaultError.code).toEqual(expect.stringContaining('code'))
+    })
+  })
+
+  describe(`public method 'alert' should take an Alerter, and call it with public property 'messageForHumans'`, () => {
+    const error = new Erric(
+      'no-error/alerter-satisfies-interface',
+      'alerter alerting, no cause for alarm'
+    )
+    error.alert(msg => {
+      console.log(msg)
     })
   })
 
   describe(`should have setters that set`, () => {
     it(`should set public property 'code' when 'setCode' is called`, () => {
       const errOG = 'error/wrong-error'
-      const erric = new Erric('error/everything/failing/perfectly')
-      erric.setCode(errOG)
-      expect(erric.code === errOG).toBe(true)
+      const error = new Erric('error/everything/failing/perfectly')
+      error.setCode(errOG)
+      expect(error.code === errOG).toBe(true)
     })
     it(`should set public property 'messageForHuman' when 'setMessageForHuman' is called`, () => {
       const comfortingMessage = 'please do not be alarmed, the alarms are suppose to be alarming'
-      const erric = new Erric('error/graceful-fire', 'the fire is hot, get your dog and get out')
-      erric.setMessageForHumans(comfortingMessage)
-      expect(erric.messageForHumans === comfortingMessage).toBe(true)
+      const error = new Erric('error/graceful-fire', 'the fire is hot, get your dog and get out')
+      error.setMessageForHumans(comfortingMessage)
+      expect(error.messageForHumans === comfortingMessage).toBe(true)
     })
     it(`should set public property meta when 'setMeta' is called`, () => {
       const cause = `error/ ¯\_(ツ)_/¯`
-      const erric = new Erric(
+      const error = new Erric(
         'error/everything/failing/perfectly',
         'please avoid spontanety, your battery is warm',
         { cause }
       )
       const telemetricData = `chromeTabCount > 500`
-      erric.setMeta({ cause: telemetricData })
-      expect(erric.meta).toEqual({ cause: telemetricData })
+      error.setMeta({ cause: telemetricData })
+      expect(error.meta).toEqual({ cause: telemetricData })
     })
   })
 
   describe(`should haltAndCatchfire`, () => {
     it(`should throw when 'hacf' method is called`, () => {
-      const erric = new Erric('tempurature/too-cold')
-      expect(erric.hacf).toThrow()
+      const error = new Erric('tempurature/too-cold')
+      expect(error.hacf).toThrow()
     })
   })
 
   describe(`should throw`, () => {
     it(`should throw when 'throw' method is called`, () => {
-      const erric = new Erric('tempurature/too-cold')
-      expect(erric.throw).toThrow()
+      const error = new Erric('tempurature/too-cold')
+      expect(error.throw).toThrow()
     })
   })
 
   describe(`should set properties with constructor params`, () => {
     it(`should set code to arg0`, () => {
-      const erric = new Erric('error/jk')
-      expect(erric.code).toEqual('error/jk')
+      const error = new Erric('error/jk')
+      expect(error.code).toEqual('error/jk')
     })
 
     it(`should set message for humans to arg1`, () => {
       const humanReadableMessage = 'there is an error, NOT'
-      const erric = new Erric('error/jk/again', humanReadableMessage)
-      expect(erric.messageForHumans).toEqual(humanReadableMessage)
+      const error = new Erric('error/jk/again', humanReadableMessage)
+      expect(error.messageForHumans).toEqual(humanReadableMessage)
     })
 
     it(`should set meta arg2`, () => {
       const arbitraryData = { input: 'arbitrary data' }
-      const erric = new Erric('error/yea-right', 'preventing meta bugs', arbitraryData)
-      expect(erric.meta).toEqual(arbitraryData)
+      const error = new Erric('error/yea-right', 'preventing meta bugs', arbitraryData)
+      expect(error.meta).toEqual(arbitraryData)
     })
   })
 })

@@ -6,7 +6,6 @@ export default class Erric {
   public code: string
   public messageForHumans: string
   public meta?: object
-  public alerter: Alerter
 
   constructor(
     code: string = 'erric/error-construction/no-error-code-provided',
@@ -18,16 +17,9 @@ export default class Erric {
     if (meta) {
       this.meta = meta
     }
-
-    this.alerter = msg => {
-      console.log(
-        'call setAlerter(to assign a function that takes a message, and shows it to users'
-      )
+    if (!messageForHumans) {
+      this.messageForHumans = this.code
     }
-  }
-
-  public setAlerter(alerter: Alerter) {
-    this.alerter = alerter
   }
 
   public hacf() {
@@ -38,8 +30,8 @@ export default class Erric {
     throw this
   }
 
-  public alert() {
-    this.alerter(this.messageForHumans)
+  public alert(alerter: Alerter) {
+    alerter(this.messageForHumans)
   }
 
   public loud() {
