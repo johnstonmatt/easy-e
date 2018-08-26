@@ -8,6 +8,7 @@ export default class Erric {
     public messageForHumans: string = defaultErrorCode,
     public metadata?: object
   ) {}
+
   // wraps throw statement https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
   public throw() {
     throw this.exception
@@ -28,7 +29,9 @@ export default class Erric {
   }
 
   // alias for err method ^
-  public error = this.err
+  public error() {
+    this.err()
+  }
 
   public warn() {
     console.warn(this)
