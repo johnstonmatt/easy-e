@@ -1,4 +1,11 @@
 import Erric from '../src/easy-e'
+
+global.console = {
+  warn: jest.fn(),
+  log: jest.fn(),
+  error: jest.fn()
+}
+
 describe('Erric', () => {
   describe('should be chill with no args in the constructor', () => {
     it('should exist after constructing with no params', () => {
@@ -48,41 +55,54 @@ describe('Erric', () => {
         { cause }
       )
       const telemetricData = `chromeTabCount > 500`
-      error.setMeta({ cause: telemetricData })
-      expect(error.meta).toEqual({ cause: telemetricData })
+      error.setMetadata({ cause: telemetricData })
+      expect(error.metadata).toEqual({ cause: telemetricData })
     })
   })
 
-  describe(`should haltAndCatchfire`, () => {
-    it(`should throw when 'hacf' method is called`, () => {
-      const error = new Erric('tempurature/too-cold')
-      expect(error.hacf).toThrow()
+  describe(`should call console method when public method is invoked`, () => {
+    it(`should call console.log when public method 'log' is invoked`, () => {
+      const error = new Erric()
+      error.log()
+      expect(global.console.log).toBeCalledWith(error)
+    })
+    it(`should call console.log when public method 'err' is invoked`, () => {
+      const error = new Erric()
+      error.err()
+      expect(global.console.error).toBeCalledWith(error)
+    })
+    it(`should call console.warn when public method 'warn' is invoked`, () => {
+      const error = new Erric()
+      error.warn()
+      expect(global.console.error).toBeCalledWith(error)
     })
   })
 
   describe(`should throw`, () => {
     it(`should throw when 'throw' method is called`, () => {
-      const error = new Erric('tempurature/too-cold')
-      expect(error.throw).toThrow()
+      const error = new Erric('tempurature/too-cold', 'halt and catch fire')
+      expect(() => {
+        error.throw()
+      }).toThrow(error.exception)
     })
   })
 
   describe(`should set properties with constructor params`, () => {
-    it(`should set code to arg0`, () => {
+    it(`should set code to arg 0`, () => {
       const error = new Erric('error/jk')
       expect(error.code).toEqual('error/jk')
     })
 
-    it(`should set message for humans to arg1`, () => {
+    it(`should set message for humans to arg 1`, () => {
       const humanReadableMessage = 'there is an error, NOT'
       const error = new Erric('error/jk/again', humanReadableMessage)
       expect(error.messageForHumans).toEqual(humanReadableMessage)
     })
 
-    it(`should set meta arg2`, () => {
+    it(`should set metadata to arg 2`, () => {
       const arbitraryData = { input: 'arbitrary data' }
       const error = new Erric('error/yea-right', 'preventing meta bugs', arbitraryData)
-      expect(error.meta).toEqual(arbitraryData)
+      expect(error.metadata).toEqual(arbitraryData)
     })
   })
 })

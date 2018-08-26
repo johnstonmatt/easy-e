@@ -1,43 +1,46 @@
-export interface Alerter {
+interface Alerter {
   (messageForHumans: string): void
 }
-
+const defaultErrorCode = 'erric/error-construction/no-error-code-provided'
 export default class Erric {
-  public code: string
-  public messageForHumans: string
-  public meta?: object
-
   constructor(
-    code: string = 'erric/error-construction/no-error-code-provided',
-    messageForHumans: string = 'no message for humans set',
-    meta?: object
-  ) {
-    this.code = code
-    this.messageForHumans = messageForHumans
-    if (meta) {
-      this.meta = meta
-    }
-    if (!messageForHumans) {
-      this.messageForHumans = this.code
-    }
-  }
-
-  public hacf() {
-    throw this
-  }
-
+    public code: string = defaultErrorCode,
+    public messageForHumans: string = defaultErrorCode,
+    public metadata?: object
+  ) {}
+  // wraps throw statement https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
   public throw() {
-    throw this
+    throw this.exception
   }
 
+  // calls param @alerter with
   public alert(alerter: Alerter) {
     alerter(this.messageForHumans)
   }
 
-  public loud() {
+  // console commands
+  public log() {
+    console.log(this)
+  }
+
+  public err() {
     console.error(this)
   }
 
+  // alias for err method ^
+  public error = this.err
+
+  public warn() {
+    console.warn(this)
+  }
+
+  // getter for Error
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+  get exception() {
+    return new Error(this.code)
+  }
+
+  // identifier
   public setCode(str: string) {
     this.code = str
   }
@@ -46,7 +49,7 @@ export default class Erric {
     this.messageForHumans = str
   }
 
-  public setMeta(metadata: object) {
-    this.meta = metadata
+  public setMetadata(metadata: object) {
+    this.metadata = metadata
   }
 }
