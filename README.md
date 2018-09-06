@@ -19,18 +19,18 @@ built in hopes that I will better handle exceptions, it's [easy](https://johnsto
 ```javascript
 
 import  Erric  from  'easy-e';
+import { toastify } from 'react-toastify'
 
   
 
 function  showPopUpWithMessage(msg) {
-
-// you do work, toastify is pretty good if you are using react
-
+    // you do work, react-toastify is pretty good if you are using react, example:
+    toastify.error(msg);
 }
 
   
 
-var  blogpost = { name: 'i <3 disenchanted'}
+var  blogpost = { name: '#buildingTheWrongThing', medium: 'medium',  }
 
   
 
@@ -38,15 +38,15 @@ if(!isSluggable(blogpost.name)){
 
 validationError = new  Erric();
 
-validationError.setCode(`validation/blog/name/unsluggable`);
+validationError.setCode('validation/blog/name/unsluggable');
 
-validationError.setMessageForHumans('sorry, only letters and spaces g </3');
+validationError.setMessageForHumans('sorry, only letters and spaces!');
 
 validationError.setMetadata({ input: blogpost.name })
 
 validationError.alert(showPopupWithMessage);
 ```
-![[a  pretty  red  box  says  'sorry, only letters and spaces g </3](http://serveon.site/demo-toast.png)](http://serveon.site/demo-toast.png)
+![[a  pretty  red  box pops up says  'sorry, only letters and spaces!](http://serveon.site/ez.gif)](http://serveon.site/ez.gif)
 ```javascript
 validationError.throw();
 ```
