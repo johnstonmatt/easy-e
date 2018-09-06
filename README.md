@@ -1,6 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/johnstonmatt/easy-e/badge.svg?branch=master)](https://coveralls.io/github/johnstonmatt/easy-e?branch=master)
 [![Build Status](https://travis-ci.org/johnstonmatt/easy-e.svg?branch=master)](https://travis-ci.org/johnstonmatt/easy-e)
-[![npm](https://img.shields.io/npm/v/easy-e.svg)](https://npmjs.com/package/easy-e)
+[![npm](https://img.shields.io/npm/v/easy-e.svg)](https://npmjs.com/package/easy-e) [![Greenkeeper badge](https://badges.greenkeeper.io/johnstonmatt/easy-e.svg)](https://greenkeeper.io/)
 
 
 
