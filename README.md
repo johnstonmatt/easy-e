@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/johnstonmatt/easy-e/badge.svg?branch=master)](https://coveralls.io/github/johnstonmatt/easy-e?branch=master)
 [![Build Status](https://travis-ci.org/johnstonmatt/easy-e.svg?branch=master)](https://travis-ci.org/johnstonmatt/easy-e)
 
 # easy-e
