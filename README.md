@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/johnstonmatt/easy-e.svg?branch=master)](https://travis-ci.org/johnstonmatt/easy-e)
 
 # easy-e
 
