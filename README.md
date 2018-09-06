@@ -30,7 +30,7 @@ function  showPopUpWithMessage(msg) {
 
   
 
-var  blogpost = { name: '#buildingTheWrongThing', medium: 'medium',  }
+var  blogpost = { name: '#buildingTheWrongThing', medium: 'medium' }
 
   
 
