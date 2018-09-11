@@ -10,7 +10,7 @@ built in hopes that I will better handle exceptions, it's [easy](https://johnsto
 
   
 
-[typescript-library-starter](https://) makes it so easy to publish to [npm](https://npmjs.com/easy-e) that I'd rather publish out of convenience, its amazing!
+[typescript-library-starter](https://github.com/alexjoverm/typescript-library-starter) makes it so easy to publish to [npm](https://npmjs.com/easy-e) that I'd rather publish out of convenience, its amazing!
 
   
 
