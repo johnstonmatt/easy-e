@@ -1,17 +1,23 @@
+import colors from 'colors/safe'
+import { defaultErricMessageForHumans, defaultErricCode, defaultErricMetadata } from './constants'
+
 interface Alerter {
   (messageForHumans: string): void
 }
-const defaultErrorCode = 'erric/error-construction/no-error-code-provided'
+
 export default class Erric {
   constructor(
-    public code: string = defaultErrorCode,
-    public messageForHumans: string = defaultErrorCode,
-    public metadata?: object
+    public code: string = defaultErricCode,
+    public messageForHumans: string = defaultErricMessageForHumans,
+    public metadata: any = defaultErricMetadata,
+    public useColors: boolean = true,
+    public uglyMode: boolean = false
   ) {}
 
   // wraps throw statement https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
-  public throw() {
-    throw this.exception
+  public throw(ugly?: boolean) {
+    if (ugly) throw this.stringify(true)
+    throw this.stringify()
   }
 
   // calls param @alerter with
@@ -24,26 +30,51 @@ export default class Erric {
     console.log(this)
   }
 
-  public err() {
-    console.error(this)
-  }
-
-  // alias for err method ^
   public error() {
-    this.err()
+    console.error(this)
   }
 
   public warn() {
     console.warn(this)
   }
 
-  // getter for Error
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
-  get exception() {
-    return new Error(this.code)
+  // alias for error method ^
+  public err() {
+    this.error()
   }
 
-  // identifier
+  public stringify(ugly?: boolean): string {
+    if (ugly || this.uglyMode) {
+      return JSON.stringify(this)
+    }
+
+    const prettyLength: number = 10
+    let metadataString: string = JSON.stringify(this.metadata, null, prettyLength).slice(0, -1)
+    metadataString = `${metadataString + ' '.repeat(prettyLength - 4)}}`
+    const codeKey = 'code:'
+    const messageForHumansKey = 'messageForHumans:'
+    const metadataKey = 'metadata:'
+
+    if (this.useColors) {
+      return `
+        ${colors.yellow(codeKey)} 
+          ${this.code}
+        ${colors.green(messageForHumansKey)}
+          ${this.messageForHumans}
+        ${colors.blue(metadataKey)} ${metadataString}
+      `
+    } else {
+      return `
+      ${codeKey} 
+        ${this.code}
+      ${messageForHumansKey}
+        ${this.messageForHumans}
+      ${metadataKey} ${metadataString}
+    `
+    }
+  }
+
+  // setters
   public setCode(str: string) {
     this.code = str
   }
@@ -54,5 +85,23 @@ export default class Erric {
 
   public setMetadata(metadata: object) {
     this.metadata = metadata
+  }
+
+  public setUseColors(useColors: boolean) {
+    this.useColors = useColors
+  }
+
+  public setUglyMode(uglyMode: boolean) {
+    this.uglyMode = uglyMode
+  }
+
+  // convenience setters
+
+  public enableUglyMode() {
+    this.uglyMode = true
+  }
+
+  public disableColors() {
+    this.useColors = false
   }
 }
