@@ -1,16 +1,23 @@
 language: node_js
 branches:
   only:
-    - master
-    - /^greenkeeper/.*$/
+  - master
+  - "/^greenkeeper/.*$/"
 cache: false
 notifications:
   email: false
 node_js:
-  - node
+- node
 script:
-  - npm run test:prod && npm run build
+- npm run test:prod && npm run build
 after_success:
-  - npm run report-coverage
-  - npm run deploy-docs
-  - npm run semantic-release
+- npm run report-coverage
+- npm run deploy-docs
+- npm run semantic-release
+deploy:
+  provider: npm
+  email: m@ttjohnston.com
+  api_key:
+    secure: npjnkjwUMdeVdVNbnekvykUpuCgDfHo1j7lYhKlSWdgHPb5hGVg4n6hA3v75L22mtksu8evOYjKrqONIlYFdMVR6+Sn/YB4vW+j1vOQpFU8kmBZSOhggo98jUFxjvtU+HC2ODXb97TVgw8RNqeAWvdu6ti/vC5Sc50Mz/LTTbjugiYDzUc5jz0X4fzpMccghrkqyb9snGaRT1weRK6kCz5dxnMZOAokqtp/y/f/DwONjn0wHgmnw7SB1SGibAMlQcXjcLnzCS6RW2MlIg1e9fu7t1m+QNpAxmwKFi3QW2bdVJb9LOiIk8xft7ZTySbeuB5Pz1FgECp90hY9YqtamILN0oYLF6dnLWYgWY8B6hdi6oeCTBGd42Q4SS+WWiPN4mC9XsIonY9+8yoc0yxHJV/Cf1D/KKDGiuggQGxB5G4dx/RduzwCnrGVJJ2kcyYFh0WMcAmHh4Yi22s/IE/HHdr9Pp61j7TY/hY1H59zbz7HI0ItNVcDev0SPCwH4P1QiIac8RNN9Hazz/GMk/1af3Xn/gwB2surqaNbmleosRdiizy7Hp0vhro7Gt9/IA0suO6Isln3PRikQWV+bBDpDfHTTWQT9gsdUaldRENbz2AZdEY2zkEnjkeDZ9NI4expnxDGDxw+0HIQKZNBRoEj+IIz7BXp1Ajj7DGfWo1Lc4R0=
+  on:
+    repo: johnstonmatt/easy-e
