@@ -7,12 +7,11 @@
 # easy-e
 
 built in hopes that I will better handle exceptions, it's [easy](https://johnstonmatt.github.io/easy-e)
-
   
 
 [typescript-library-starter](https://github.com/alexjoverm/typescript-library-starter) makes it so easy to publish to [npm](https://npmjs.com/easy-e) that I'd rather publish out of convenience, its amazing!
 
-  
+### now in technicolor!
 
 ## usage
 
