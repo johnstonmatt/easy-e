@@ -45,7 +45,7 @@ validationError.setMetadata({ input: blogpost.name })
 
 validationError.alert(showPopupWithMessage);
 ```
-![[a  pretty  red  box pops up says  'sorry, only letters and spaces!](http://serveon.site/ez.gif)](http://serveon.site/ez.gif)
+![[a  pretty  red  box pops up says  'sorry, only letters and spaces!](http://serveon.site/ez.gif)](https://serveon.site/ez.gif)
 ```javascript
 validationError.throw();
 ```
