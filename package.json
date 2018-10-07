@@ -1,6 +1,6 @@
 {
   "name": "easy-e",
-  "version": "0.0.0-development",
+  "version": "3.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/easy-e.umd.js",
