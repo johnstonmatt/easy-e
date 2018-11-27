@@ -1,6 +1,8 @@
 import colors from 'colors/safe'
 import { defaultErricMessageForHumans, defaultErricCode, defaultErricMetadata } from './constants'
 
+// aims to catch errors, sometimes throw them, but never create them
+
 interface Alerter {
   (messageForHumans: string): void
 }
