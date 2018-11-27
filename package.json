@@ -90,6 +90,7 @@
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
+    "current-type-of": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.0",
     "jest": "^22.0.2",
@@ -106,6 +107,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.13.0",
     "semantic-release": "^15.9.17",
+    "semantic-release-cli": "^4.0.11",
     "travis-deploy-once": "^5.0.9",
     "ts-jest": "^22.0.0",
     "ts-node": "^6.0.0",
@@ -114,9 +116,5 @@
     "tslint-config-standard": "^7.0.0",
     "typedoc": "^0.11.0",
     "typescript": "^2.6.2"
-  },
-  "dependencies": {
-    "current-type-of": "^1.0.0",
-    "semantic-release-cli": "^4.0.8"
   }
 }
