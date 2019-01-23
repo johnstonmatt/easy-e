@@ -7,14 +7,18 @@ interface Alerter {
   (messageForHumans: string): void
 }
 
-export default class Erric {
-  constructor(
-    public code: string = defaultErricCode,
-    public messageForHumans: string = defaultErricMessageForHumans,
-    public metadata: any = defaultErricMetadata,
-    public useColors: boolean = true,
-    public uglyMode: boolean = false
-  ) {}
+export class Erric {
+  public code: string
+  public messageForHumans: string
+  public metadata: any
+  public useColors: boolean = true
+  public uglyMode: boolean = false
+
+  constructor(code?: string, messageForHumans?: string, metadata?: any) {
+    this.code = code || defaultErricCode
+    this.messageForHumans = messageForHumans || defaultErricMessageForHumans
+    this.metadata = metadata || defaultErricMetadata
+  }
 
   // wraps throw statement https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
   public throw(ugly?: boolean) {
@@ -95,6 +99,14 @@ export default class Erric {
 
   public setUglyMode(uglyMode: boolean) {
     this.uglyMode = uglyMode
+  }
+
+  get message(): string {
+    return this.messageForHumans
+  }
+
+  set message(newMessage: string) {
+    this.messageForHumans = newMessage
   }
 
   // convenience setters

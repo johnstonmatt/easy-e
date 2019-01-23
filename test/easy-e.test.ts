@@ -1,4 +1,4 @@
-import Erric from '../src/easy-e'
+import { Erric } from '../src/easy-e'
 import {
   defaultErricMessageForHumans,
   defaultErricCode,
@@ -29,6 +29,17 @@ describe('Erric', () => {
     it(`should have a public property called 'messageForHumans' by that describes itself`, () => {
       const e = new Erric()
       expect(e.messageForHumans).toEqual(defaultErricMessageForHumans)
+    })
+
+    it(`should have a public property called 'message' that is equal to 'messageForHumans'`, () => {
+      const e = new Erric()
+      expect(e.message).toEqual(defaultErricMessageForHumans)
+    })
+
+    it(`should have an accessor called 'message' that sets 'messageForHumans'`, () => {
+      const e = new Erric(`easy-e/messageForHumans!=message`)
+      e.message = 'easy-e/message==messageForHumans'
+      expect(e.messageForHumans).toEqual(e.message)
     })
 
     it(`should have a public property called 'metadata' by default that describes itself`, () => {
@@ -75,6 +86,17 @@ describe('Erric', () => {
       )
       e.setMessageForHumans(comfortingMessage)
       expect(e.messageForHumans === comfortingMessage).toBe(true)
+    })
+
+    it(`should have accessor 'message' that returns 'messageForHumans'`, () => {
+      const comfortingMessage =
+        'please do not be alarmed, the alarms are suppose to be alarming, especially morning ones'
+      const e = new Erric(
+        'Erric/meta/error/graceful-fire',
+        'the fire is hot, get your dog and get out'
+      )
+      e.setMessageForHumans(comfortingMessage)
+      expect(e.message === comfortingMessage).toBe(true)
     })
 
     it(`should set public property 'metadata' when 'setMetadata' is called`, () => {
@@ -195,24 +217,19 @@ describe('Erric', () => {
       expect(e.metadata).toEqual(arbitraryData)
     })
 
-    it(`should set useColors to arg 3`, () => {
-      const e = new Erric(
-        'Erric/meta/error/yea-right',
-        'preventing meta bugs',
-        { input: 'arbitrary data' },
-        false
-      )
+    it(`'setUseColors' method should set useColors`, () => {
+      const e = new Erric('Erric/meta/error/yea-right', 'preventing meta bugs', {
+        input: 'arbitrary data'
+      })
+      e.setUseColors(false)
       expect(e.useColors).toEqual(false)
     })
 
-    it(`should set uglyMode to arg 4`, () => {
-      const e = new Erric(
-        'Erric/meta/error/yea-right',
-        'preventing meta bugs',
-        { input: 'arbitrary data' },
-        true,
-        true
-      )
+    it(`'setUglyMode' method should set uglyMode`, () => {
+      const e = new Erric('Erric/meta/error/yea-right', 'preventing meta bugs', {
+        input: 'arbitrary data'
+      })
+      e.setUglyMode(true)
       expect(e.uglyMode).toEqual(true)
     })
   })
